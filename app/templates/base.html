@@ -1,4 +1,4 @@
-{% load bootstrap5 %}
+{% load bootstrap5 %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% block styles %} {% bootstrap_css %} {% endblock %}
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"> {% endblock %}
 </head>
 
 <body>
-    {% block content %} {% endblock %} {% block scripts %} {% bootstrap_javascript %} {% endblock %}
+    {% block content %} {% endblock %} {% block scripts %}
+    <script src="{% static 'js/index.js' %}"></script>
+    {% bootstrap_javascript %} {% endblock %}
 </body>
 
 </html>
