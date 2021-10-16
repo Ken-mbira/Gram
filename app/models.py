@@ -14,6 +14,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(upload_to='profile/')
 
-
-
-
+    def save_profile(self):
+        """This will save a profile to the database
+        """
+        self.save()

@@ -20,6 +20,15 @@ class TestProfile(TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.user_profile,Profile))
 
+    def test_save_profile(self):
+        """This will check if a profile can be saved to the database
+        """
+        self.user_profile.save_profile()
+        profiles = Profile.objects.all()
+
+        self.assertTrue(len(profiles)>0)
+
+
     # def tearDown(self):
     #     """This will clear the database after every test case
     #     """
