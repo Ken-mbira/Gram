@@ -1,3 +1,17 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Hello world!</h1>
+{% extends 'base.html' %}{% load static %} {% block content %}
+<div class="row" style="padding:20px">
+    <div class="col-md-5 col-sm-5 col-xs-5">
+        <img class="rounded-circle img-fluid" src="{{profile.profile_pic.url}}">
+    </div>
+    <div class="col-md-7 col-sm-7" style="text-align: center;">
+        <h3>{{profile.username}}</h3>
+        <a href="#" class="btn btn-outline-secondary">Follow</a>
+    </div>
+</div>
+<div class="row grid">
+    <h2 style="width:100%;text-align:center">Posts</h2>
+    <div class="col-md-2 col-sm-3 col-xs-4">
+        <img src="{% static 'images/landing.jpg' %}" class="image img-fluid">
+    </div>
+</div>
 {% endblock %}

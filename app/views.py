@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import user_logged_in
+from .models import Profile
 
 # Create your views here.
 def home(request):
@@ -19,4 +19,6 @@ def user_profile(request,pk):
     Args:
         request ([type]): [description]
     """
-    return render(request,'gram/profile.html')
+    user = request.user
+    profile = Profile.objects.get(user = user)
+    return render(request,'gram/profile.html',{"profile":profile})
