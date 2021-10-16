@@ -7,5 +7,4 @@ def user_login(request):
     Args:
         request ([type]): [description]
     """
-    message = "login"
-    return render(request,'authenticate/login.html',{'message':message})
+    return render(request,'authenticate/login.html')
