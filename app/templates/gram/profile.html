@@ -6,12 +6,21 @@
     <div class="col-md-7 col-sm-7" style="text-align: center;">
         <h3>{{profile.username}}</h3>
         <a href="#" class="btn btn-outline-secondary">Follow</a>
+        <br><br>
+        <div style="display:flex;justify-content:space-around">
+            <div>
+                <p><span class="badge bg-light text-dark">12</span>Followers</p>
+            </div>
+            <div>
+                <p><span class="badge bg-light text-dark">12</span>Followers</p>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row grid">
-    <h2 style="width:100%;text-align:center">Posts</h2>
+<h2 style="width:100%;text-align:center">Posts</h2>
+<div class="row grid" style="padding:10px;border-left:solid 0.2px black;border-right:solid 0.2px black;border-top:solid 0.2px black">
     <div class="col-md-2 col-sm-3 col-xs-4">
-        <img src="{% static 'images/landing.jpg' %}" class="image img-fluid">
+        <img src="{% static 'images/landing.jpg' %}" class="image img-fluid rounded">
     </div>
 </div>
 {% endblock %}
