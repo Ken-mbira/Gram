@@ -6,6 +6,7 @@
     </div>
     <div class="col-md-5" style="padding:20px">
         <form action="{% url 'login' %}" method="POST" style="border: solid 1px black;padding:20px">
+            {% csrf_token %}
             <h2 style="font-family: 'Dancing Script', cursive;text-align:center;width:100%"><u>Welcome to gram</u></h2>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
