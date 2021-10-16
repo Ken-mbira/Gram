@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 
 from .emails import send_welcome_email
+from .forms import UserRegistrationForm
 
 # Create your views here.
 def user_login(request):
@@ -45,7 +46,7 @@ def user_register(request):
         request ([type]): [description]
     """
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
@@ -58,5 +59,5 @@ def user_register(request):
             return redirect('home')
 
     else:
-        form = UserCreationForm()
+        form = UserRegistrationForm()
         return render(request,'authenticate/register.html',{"form":form})
