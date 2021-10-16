@@ -24,3 +24,13 @@ def user_login(request):
 
     else: 
         return render(request,'authenticate/login.html')
+
+def user_logout(request):
+    """This will handle logging out a user
+
+    Args:
+        request ([type]): [description]
+    """
+    logout(request)
+    messages.success(request,'You were logged out')
+    return redirect('home')
