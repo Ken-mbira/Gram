@@ -12,3 +12,11 @@ def home(request):
         return render(request,'gram/index.html')
     else:
         return redirect('login')
+
+def user_profile(request,pk):
+    """This will manage the user profile page
+
+    Args:
+        request ([type]): [description]
+    """
+    return render(request,'gram/profile.html')
