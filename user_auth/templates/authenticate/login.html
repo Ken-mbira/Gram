@@ -1,3 +1,33 @@
-{% extends 'base.html' %} {% block content %}
-<h1>{{message}}</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5 login-image">
+        <img class="img-fluid" src="{% static 'images/landing.jpg' %}">
+    </div>
+    <div class="col-md-5" style="padding:20px">
+        <form action="{% url 'login' %}" method="POST" style="border: solid 1px black;padding:20px">
+            <h2 style="font-family: 'Dancing Script', cursive;text-align:center;width:100%"><u>Welcome to gram</u></h2>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">password</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <div class="mb-3" style="width:100%;text-align:center">
+                <button class="btn btn-outline-success" type="submit">Login</button>
+            </div>
+            <hr>
+            <div class="mb-3" style="width:100%;text-align:center">
+                <a href="#">Forgot password?</a>
+            </div>
+        </form>
+        <div style="border:solid 1px black;text-align: center;margin-top: 10px;">
+            <h3>Don't have an account?</h3>
+            <a href="#">Sign Up</a>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 {% endblock %}
