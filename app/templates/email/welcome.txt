@@ -1,0 +1,2 @@
+Hello {{name}}
+Welcome to Gram, we look foward to having you share your content with us.

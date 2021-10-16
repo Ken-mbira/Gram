@@ -3,6 +3,8 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 
+from .emails import send_welcome_email
+
 # Create your views here.
 def user_login(request):
     """This will render the login page
@@ -49,9 +51,10 @@ def user_register(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
 
+            
             user = authenticate(username=username,password=password)
             login(request,user)
-            messages.success(request,f"Congratulations {username}, you were successfully registered into Movie Galore")
+            messages.success(request,f"Congratulations {username}, your account was successfully created!")
             return redirect('home')
 
     else:
