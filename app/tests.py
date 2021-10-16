@@ -28,8 +28,20 @@ class TestProfile(TestCase):
 
         self.assertTrue(len(profiles)>0)
 
+    def test_delete_profile(self):
+        """This will check that a profile can be deleted from the database
+        """
+        self.user_profile.save_profile()
+        self.user_profile.delete_profile()
+        profiles = Profile.objects.all()
 
-    # def tearDown(self):
-    #     """This will clear the database after every test case
-    #     """
-    #     self.user.delete()
+        self.assertTrue(len(profiles) == 0)
+
+    def test_update_profile(self):
+        """This will test that we can update a profile
+        """
+        self.user_profile.save_profile()
+        new = Profile(user = self.user,username = 'Kinyanjui',bio="hello",profile_pic='another location')
+
+        self.user_profile.update_profile(new)
+        self.assertTrue(self.user_profile.username == 'Kinyanjui')

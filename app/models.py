@@ -18,3 +18,19 @@ class Profile(models.Model):
         """This will save a profile to the database
         """
         self.save()
+
+    def delete_profile(self):
+        """This will remove a profile from the database
+        """
+        self.delete()
+
+    def update_profile(self,new):
+        """This will update a user's profile
+
+        Args:
+            new ([type]): [description]
+        """
+        self.username = new.username
+        self.bio = new.bio
+        self.profile_pic = new.profile_pic
+        self.save()
