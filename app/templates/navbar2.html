@@ -1,0 +1,10 @@
+{% load static %} {% if user.is_authenticated %}
+<div class="container-fluid" style="background-color: #E5E5E5;">
+    <div style="width:100%;text-align:center">
+        <span class="badge"><a href="{% url 'home' %}"><img width="20px" src="{% static 'images/home.svg' %}"></a></span>
+        <span class="badge"><a href="#"><img width="20px" src="{% static 'images/chat.svg' %}"></a></span>
+        <span class="badge"><a href="#"><img width="20px" src="{% static 'images/search.svg' %}"></a></span>
+        <span class="badge"><a href="#"><img width="20px" src="{% static 'images/profile.svg' %}"></a></span>
+    </div>
+</div>
+{% endif %}
