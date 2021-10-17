@@ -14,6 +14,9 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(null=True,blank=True,upload_to='profile/')
 
+    def __str__(self):
+        return self.username
+
     def save_profile(self):
         """This will save a profile to the database
         """
@@ -34,3 +37,18 @@ class Profile(models.Model):
         self.bio = new.bio
         self.profile_pic = new.profile_pic
         self.save()
+
+class Image(models.Model):
+    """This will define all the behaviours of an image post
+
+    Args:
+        models ([type]): [description]
+    """
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    image_name = models.CharField(max_length=50)
+    image_caption = models.TextField(null=True,blank=True)
+    likes = models.IntegerField(null=True,blank=True)
+
+    def __str__(self):
+        return self.image_name

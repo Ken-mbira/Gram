@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-from .models import Profile
+from .models import Profile,Image
 from django.contrib.auth.models import User
 
 class TestProfile(TestCase):
@@ -45,3 +45,5 @@ class TestProfile(TestCase):
 
         self.user_profile.update_profile(new)
         self.assertTrue(self.user_profile.username == 'Kinyanjui')
+
+class TestImage(TestCase):
