@@ -5,6 +5,7 @@
         <span class="badge"><a href="#"><img width="20px" src="{% static 'images/chat.svg' %}"></a></span>
         <span class="badge"><a href="#"><img width="20px" src="{% static 'images/search.svg' %}"></a></span>
         <span class="badge"><a href="{% url 'profile' user.pk %}"><img width="20px" src="{% static 'images/profile.svg' %}"></a></span>
+        <span class="badge"><a href="{% url 'update_profile' %}"><img width="20px" src="{% static 'images/settings.svg' %}"></a></span>
     </div>
 </div>
 {% endif %}
