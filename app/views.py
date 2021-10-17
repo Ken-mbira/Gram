@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Image, Profile
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .forms import UpdateProfileForm,CreatePostForm
 
@@ -69,3 +71,17 @@ def post(request,pk):
     else:
         form = CreatePostForm(initial={'user':request.user})
         return render(request,'gram/add_post.html',{'form':form})
+
+def search_profile(request):
+    """This will display the results of a search
+
+    Args:
+        request ([type]): [description]
+    """
+    if 'search_term' in request.GET and request.GET['search_term']:
+        search_term = request.GET['search_term']
+        profiles = Profile.search_profile(search_term)
+        return render(request,"gram/search_results.html",{'profiles':profiles,"term":search_term})
+    else:
+        messages.success(request,"You have not searched for any term.")
+        return HttpResponseRedirect(reverse('home'))

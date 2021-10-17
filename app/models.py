@@ -39,7 +39,8 @@ class Profile(models.Model):
         self.profile_pic = new.profile_pic
         self.save()
 
-    def search_profile(self,search_term):
+    @classmethod
+    def search_profile(cls,search_term):
         """This will return a series of profiles with a provided search term
 
         Args:
@@ -48,7 +49,7 @@ class Profile(models.Model):
         Returns:
             [type]: [description]
         """
-        profiles = Profile.objects.filter(username__icontains = search_term)
+        profiles = cls.objects.filter(username__icontains = search_term)
 
         return profiles
 

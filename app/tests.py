@@ -51,7 +51,7 @@ class TestProfile(TestCase):
         """
         self.user_profile.save_profile()
         term = 'ken'
-        found_profiles = self.user_profile.search_profile(term)
+        found_profiles = Profile.search_profile(term)
 
         self.assertEqual(found_profiles[0].username,self.user_profile.username)
 
