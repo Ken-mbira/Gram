@@ -13,7 +13,7 @@ class Profile(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True)
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(null=True,blank=True,upload_to='profile/')
-    followers = models.ManyToManyField(User,related_name='followers')
+    followers = models.ManyToManyField(User,related_name='followers',blank=True)
 
     def __str__(self):
         return self.username
@@ -38,6 +38,19 @@ class Profile(models.Model):
         self.bio = new.bio
         self.profile_pic = new.profile_pic
         self.save()
+
+    def search_profile(self,search_term):
+        """This will return a series of profiles with a provided search term
+
+        Args:
+            search_term ([type]): [description]
+
+        Returns:
+            [type]: [description]
+        """
+        profiles = Profile.objects.filter(username__icontains = search_term)
+
+        return profiles
 
 class Image(models.Model):
     """This will define all the behaviours of an image post

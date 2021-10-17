@@ -46,6 +46,15 @@ class TestProfile(TestCase):
         self.user_profile.update_profile(new)
         self.assertTrue(self.user_profile.username == 'Kinyanjui')
 
+    def test_search_by_username(self):
+        """This will check if one can user a username to retrieve profiles from the datbase
+        """
+        self.user_profile.save_profile()
+        term = 'ken'
+        found_profiles = self.user_profile.search_profile(term)
+
+        self.assertEqual(found_profiles[0].username,self.user_profile.username)
+
 class TestImage(TestCase):
     """This will define the behaviours of the image class
 
