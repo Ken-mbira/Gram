@@ -51,3 +51,11 @@ def update_profile(request):
     else:
         form = UpdateProfileForm(instance=request.user.profile)
         return render(request,'gram/update_profile.html',{"form":form})
+
+def post(request,pk):
+    """This will handle a new post
+
+    Args:
+        request ([type]): [description]
+    """
+    return render(request,'gram/add_post.html')
