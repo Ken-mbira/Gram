@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
-from .models import Profile
+from .models import Image, Profile
 from django.contrib import messages
 
-from .forms import UpdateProfileForm
+from .forms import UpdateProfileForm,CreatePostForm
 
 # Create your views here.
 def home(request):
@@ -25,9 +25,11 @@ def user_profile(request,pk):
     user = request.user
     try:
         profile = Profile.objects.get(user = user)
-        return render(request,'gram/profile.html',{"profile":profile})
+        posts = Image.objects.filter(user = request.user)
+        return render(request,'gram/profile.html',{"profile":profile,"posts":posts})
 
-    except :
+    except Exception as e:
+        print(e)
         messages.success(request,'Sorry, but it seems your profile page is not set up, you could do so here!')
         return redirect('update_profile')
         
@@ -58,4 +60,12 @@ def post(request,pk):
     Args:
         request ([type]): [description]
     """
-    return render(request,'gram/add_post.html')
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your post has been created successfully!")
+        return redirect('home')
+    else:
+        form = CreatePostForm(initial={'user':request.user})
+        return render(request,'gram/add_post.html',{'form':form})

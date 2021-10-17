@@ -15,8 +15,10 @@
 </div>
 <h2 style="width:100%;text-align:center">Posts</h2>
 <div class="row grid" style="padding:10px;border-left:solid 0.2px black;border-right:solid 0.2px black;border-top:solid 0.2px black">
-    <div class="col-md-2 col-sm-3 col-xs-4">
-        <img src="{% static 'images/landing.jpg' %}" class="image img-fluid rounded">
+    {% for post in posts %}
+    <div class="col-md-4 col-sm-3 col-xs-4">
+        <img src="{{ post.image_path.url }}" class="image img-fluid rounded">
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

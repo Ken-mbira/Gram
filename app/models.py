@@ -45,11 +45,10 @@ class Image(models.Model):
         models ([type]): [description]
     """
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
-    image_path = models.ImageField(blank=True)
+    image_path = models.ImageField(null=True,blank=True,upload_to='posts/')
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
-    likes = models.IntegerField(null=True,blank=True)
+    likes = models.IntegerField(null=True,blank=True,default=0)
 
     def __str__(self):
         return self.image_name

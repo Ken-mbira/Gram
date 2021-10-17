@@ -1,3 +1,6 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Hello World</h1>
+{% extends 'base.html' %}{% load bootstrap5 %} {% block content %}
+<form action="{% url 'post' user.pk%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {% bootstrap_form form %}
+    <button type="submit" class="btn btn-outline-secondary">Post</button>
+</form>
 {% endblock %}
