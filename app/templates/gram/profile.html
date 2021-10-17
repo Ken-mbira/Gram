@@ -5,10 +5,13 @@
     </div>
     <div class="col-md-7 col-sm-7" style="text-align: center;">
         <h3>{{profile.username}}</h3>
-        <br><br>
+        {% if user == profile.user %} {% else %}
+        <a href="#" class="btn btn-outline-secondary">Follow</a> {% endif %}
+        <br>
+        <br>
         <p>{{profile.bio}}</p>
         <div style="display:flex;justify-content:space-around">
-            <button type="button" class="btn btn-outline-secondary">Followers<span class="badge bg-secondary">4</span></button>
+            <button type="button" class="btn btn-outline-secondary">Followers<span class="badge bg-secondary">{{profile.followers|length}}</span></button>
             <button type="button" class="btn btn-outline-secondary">Following<span class="badge bg-secondary">4</span></button>
         </div>
     </div>

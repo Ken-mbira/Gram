@@ -3,6 +3,7 @@ from .models import Image, Profile
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 from .forms import UpdateProfileForm,CreatePostForm
 
@@ -24,10 +25,10 @@ def user_profile(request,pk):
     Args:
         request ([type]): [description]
     """
-    user = request.user
+    user = User.objects.get(pk=pk)
     try:
         profile = Profile.objects.get(user = user)
-        posts = Image.objects.filter(user = request.user)
+        posts = Image.objects.filter(user = user)
         return render(request,'gram/profile.html',{"profile":profile,"posts":posts})
 
     except Exception as e:
@@ -79,9 +80,13 @@ def search_profile(request):
         request ([type]): [description]
     """
     if 'search_term' in request.GET and request.GET['search_term']:
-        search_term = request.GET['search_term']
-        profiles = Profile.search_profile(search_term)
-        return render(request,"gram/search_results.html",{'profiles':profiles,"term":search_term})
+        try:
+            search_term = request.GET['search_term']
+            profiles = Profile.search_profile(search_term)
+            return render(request,"gram/search_results.html",{'profiles':profiles,"term":search_term})
+        except Exception as e:
+            print(e)
+            
     else:
         messages.success(request,"You have not searched for any term.")
         return HttpResponseRedirect(reverse('home'))
