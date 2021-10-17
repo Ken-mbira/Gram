@@ -49,6 +49,7 @@ class Image(models.Model):
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
     likes = models.IntegerField(null=True,blank=True,default=0)
+    date_added = models.DateTimeField(null=True,auto_now_add=True)
 
     def __str__(self):
         return self.image_name
