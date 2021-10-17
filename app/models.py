@@ -72,3 +72,16 @@ class Image(models.Model):
         """
         self.image_caption = caption
         self.save()
+
+class Comments(models.Model):
+    """This defines the characteristics of a comment
+
+    Args:
+        models ([type]): [description]
+    """
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.comment
