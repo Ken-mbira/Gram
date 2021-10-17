@@ -63,3 +63,12 @@ class Image(models.Model):
         """This will remove an image instance from the database
         """
         self.delete()
+
+    def update_caption(self,caption):
+        """This will update the image caption saved in the database
+
+        Args:
+            caption ([type]): [description]
+        """
+        self.image_caption = caption
+        self.save()
