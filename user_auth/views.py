@@ -64,7 +64,7 @@ def user_register(request):
             return redirect('home')
 
         else:
-            messages.success(request,'There was a problem with your form')
+            messages.success(request,'There was a problem with your form, you could check if your username has spaces')
             form = UserRegistrationForm()
             return render(request,'authenticate/register.html',{"form":form})
 
