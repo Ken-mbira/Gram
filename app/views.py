@@ -37,9 +37,8 @@ def update_profile(request):
     Args:
         request ([type]): [description]
     """
-    user = request.user
     if request.method == 'POST':
-        form = UpdateProfileForm(request.POST,request.FILES,instance=user)
+        form = UpdateProfileForm(request.POST,request.FILES,instance=request.user.profile)
         if form.is_valid():
             form.save()
             return redirect('profile',request.user.pk)
@@ -50,5 +49,5 @@ def update_profile(request):
 
 
     else:
-        form = UpdateProfileForm(instance=user)
+        form = UpdateProfileForm(instance=request.user.profile)
         return render(request,'gram/update_profile.html',{"form":form})

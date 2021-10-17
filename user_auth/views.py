@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .emails import send_welcome_email
 from .forms import UserRegistrationForm
+from app.models import Profile
 
 # Create your views here.
 def user_login(request):
@@ -56,9 +57,16 @@ def user_register(request):
 
             
             user = authenticate(username=username,password=password)
+            Profile.objects.create(user = user)
+
             login(request,user)
             messages.success(request,f"Congratulations {username}, your account was successfully created!")
             return redirect('home')
+
+        else:
+            messages.success(request,'There was a problem with your form')
+            form = UserRegistrationForm()
+            return render(request,'authenticate/register.html',{"form":form})
 
     else:
         form = UserRegistrationForm()

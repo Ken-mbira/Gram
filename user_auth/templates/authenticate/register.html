@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %}{% load bootstrap5 %} {% block content %}
+{% extends 'base.html' %} {% load static %}{% load bootstrap5 %} {% block content %} {% if form.errors %} {{form.errors}} {% endif %}
 <form action="{% url 'register' %}" method="post" style="border: solid 1px black;margin:20px;padding:20px">
     <h2 style="width:100%;text-align:center"><u>Register To Gram</u></h2>
     {% csrf_token %} {% bootstrap_form form %}
