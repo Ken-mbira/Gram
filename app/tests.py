@@ -47,3 +47,39 @@ class TestProfile(TestCase):
         self.assertTrue(self.user_profile.username == 'Kinyanjui')
 
 class TestImage(TestCase):
+    """This will define the behaviours of the image class
+
+    Args:
+        TestCase ([type]): [description]
+    """
+    def setUp(self):
+        """This runs before every test
+        """
+        self.user = User.objects.create(username='mbira')
+        self.user.save()
+        self.user_profile = Profile(user = self.user,username='kenmbesh',bio='my bio',profile_pic='image')
+        self.user_profile.save_profile()
+
+        self.image = Image(user = self.user,profile = self.user_profile,image_path = 'blah',image_caption = 'blah',likes = 1)
+
+    def test_instance(self):
+        """This tests whether an image instance can be created
+        """
+        self.assertTrue(isinstance(self.image,Image))
+
+    def test_save_image(self):
+        """This will check if an image can be saved to the database
+        """
+        self.image.save_image()
+        images = Image.objects.all()
+
+        self.assertTrue(len(images)>0)
+
+    def test_delete_image(self):
+        """This will check that an image can get deleted
+        """
+        self.image.save_image()
+        self.image.delete_image()
+        images = Image.objects.all()
+
+        self.assertTrue(len(images) == 0)

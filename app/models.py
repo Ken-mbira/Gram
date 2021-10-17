@@ -46,9 +46,20 @@ class Image(models.Model):
     """
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    image_path = models.ImageField(blank=True)
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
     likes = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return self.image_name
+
+    def save_image(self):
+        """This will add the image to the database
+        """
+        self.save()
+
+    def delete_image(self):
+        """This will remove an image instance from the database
+        """
+        self.delete()
