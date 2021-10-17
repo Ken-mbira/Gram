@@ -1,7 +1,6 @@
 $(document).ready(function() {
-    $('.post-modal').click(function(e) {
-        var id = e.target.getAttribute('value')
-        var myModal = new bootstrap.Modal(document.getElementById(id))
+    if (document.getElementById('image-desc')) {
+        var myModal = new bootstrap.Modal(document.getElementById('image-desc'))
         myModal.show();
-    })
+    }
 })

@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid" class="image-description">
+    <img class="img-fluid img-thumbnail" src="{{post.image_path.url}}" style="margin: 10px;" class="image-description">
+    <div class="modal fade" id="image-desc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{post.image_name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{post.image_caption}}
+                </div>
+                <div class="modal-footer" style="display:flex;justify-content:space-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <small>{{post.date_added}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

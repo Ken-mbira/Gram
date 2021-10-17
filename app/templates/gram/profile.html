@@ -23,24 +23,9 @@
 <div class="row grid" style="padding:10px;border-left:solid 0.2px black;border-right:solid 0.2px black;border-top:solid 0.2px black">
     {% for post in posts %}
     <div class="col-md-4 col-sm-3 col-xs-4 post-modal" style="margin-bottom: 10px;">
-        <img src="{{ post.image_path.url }}" class="image img-fluid rounded" value="image{{post.pk}}">
-    </div>
-    <div class="modal fade" id="image{{post.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {{post.image_name}}
-                </div>
-                <div class="modal-footer" style="display:flex;justify-content:space-between">
-                    <small>{{post.date_added}}</small>
-                    <button type="button" class="btn btn-secondary"><span class="badge badge-secondary">14</span>Likes</button>
-                </div>
-            </div>
-        </div>
+        <a href="{% url 'image' post.pk %}">
+            <img src="{{ post.image_path.url }}" class="image img-fluid rounded">
+        </a>
     </div>
     {% endfor %}
 </div>

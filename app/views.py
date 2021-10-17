@@ -104,3 +104,12 @@ def FollowView(request,pk):
     profile.followers.add(request.user)
     pk = profile.user.pk
     return HttpResponseRedirect(reverse('profile', args=[str(pk)]))
+
+def view_image(request,pk):
+    """This will render an image page to show details of an image
+
+    Args:
+        request ([type]): [description]
+    """
+    post = get_object_or_404(Image,pk = pk)
+    return render(request,'gram/image.html',{"post":post})
