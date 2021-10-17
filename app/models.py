@@ -18,6 +18,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.username
 
+    def total_followers(self):
+        """This counts the number of followers in the profile
+        """
+        return self.followers.count()
+
     def save_profile(self):
         """This will save a profile to the database
         """

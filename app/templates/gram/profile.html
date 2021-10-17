@@ -6,12 +6,15 @@
     <div class="col-md-7 col-sm-7" style="text-align: center;">
         <h3>{{profile.username}}</h3>
         {% if user == profile.user %} {% else %}
-        <a href="#" class="btn btn-outline-secondary">Follow</a> {% endif %}
+        <form action="{% url 'follow' profile.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="profile_pk" value="{{profile.pk}}" class="btn btn-outline-secondary">Follow</button>
+        </form>{% endif %}
         <br>
         <br>
         <p>{{profile.bio}}</p>
         <div style="display:flex;justify-content:space-around">
-            <button type="button" class="btn btn-outline-secondary">Followers<span class="badge bg-secondary">{{profile.followers|length}}</span></button>
+            <button type="button" class="btn btn-outline-secondary">Followers<span class="badge bg-secondary">{{followers}}</span></button>
             <button type="button" class="btn btn-outline-secondary">Following<span class="badge bg-secondary">4</span></button>
         </div>
     </div>

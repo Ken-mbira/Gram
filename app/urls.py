@@ -10,6 +10,7 @@ urlpatterns = [
     path('update_profile/',views.update_profile,name="update_profile"),
     path('post/<int:pk>',views.post,name='post'),
     path('search',views.search_profile,name="search"),
+    path('follow/<int:pk>',views.FollowView,name="follow"),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
