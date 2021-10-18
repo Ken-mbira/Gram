@@ -13,18 +13,35 @@
                 <small>{{post.date_added}}</small>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{post.pk}}" aria-expanded="false" aria-controls="collapseTwo">
                         Comments
                       </button>
                     </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <form action="#" method="post" style="padding:10px">
+                    <div id="collapse{{post.pk}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <form action="{% url 'comment' post.pk %}" method="post" style="padding:10px">
                             {% csrf_token %}
                             <div class="mb-2 mt-1">
                                 <input type="text" class="form-control" name="comment" placeholder="add comment here...">
                             </div>
                             <button class="btn btn-outline-secondary" type="submit">Submit</button>
                         </form>
+                        <hr>
+                        <div style="padding:10px">
+                            {% if comments %}
+                            <h2><u>Comments</u></h2>
+                            {% for comment in post.get_comments %}
+                            <figure class="mb-2">
+                                <blockquote class="blockquote">
+                                    <p>{{comment.comment}}</p>
+                                </blockquote>
+                                <figcaption class="blockquote-footer">
+                                    <cite title="Source Title">{{comment.user.username}}</cite>
+                                </figcaption>
+                            </figure>
+                            {% endfor %} {% else %}
+                            <p>There are no comments yet.</p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

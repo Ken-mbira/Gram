@@ -12,6 +12,7 @@ urlpatterns = [
     path('search',views.search_profile,name="search"),
     path('follow/<int:pk>',views.FollowView,name="follow"),
     path('image/<int:pk>',views.view_image,name = 'image'),
+    path('comment/<int:pk>',views.comment,name="comment"),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

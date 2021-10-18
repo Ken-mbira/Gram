@@ -118,6 +118,15 @@ class Image(models.Model):
 
         return posts
 
+    def get_comments(self):
+        """This will return all the comments related to a post
+
+        Returns:
+            [type]: [description]
+        """
+        comments = Comments.objects.filter(image = self)
+        return comments
+
 class Comments(models.Model):
     """This defines the characteristics of a comment
 

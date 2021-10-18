@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Image, Profile
+from .models import Image, Profile,Comments
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -116,3 +116,15 @@ def view_image(request,pk):
     """
     post = get_object_or_404(Image,pk = pk)
     return render(request,'gram/image.html',{"post":post})
+
+def comment(request,pk):
+    """This will handle the commenting on a particular post
+
+    Args:
+        request ([type]): [description]
+        pk ([type]): [description]
+    """
+    post = get_object_or_404(Image,pk=pk)
+    comment = Comments(user = request.user,image = post,comment = request.POST['comment'])
+    comment.save()
+    return HttpResponseRedirect(reverse('home'))
