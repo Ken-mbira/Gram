@@ -18,8 +18,9 @@ def home(request):
     if request.user.is_authenticated:
         users = Profile.get_following(request.user)
         posts = Image.get_images(users)
+        alt_profiles = Profile.objects.all()
 
-        return render(request,'gram/index.html',{"posts":posts})
+        return render(request,'gram/index.html',{"posts":posts,'profiles':alt_profiles})
     else:
         return redirect('login')
 

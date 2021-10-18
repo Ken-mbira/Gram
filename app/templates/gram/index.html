@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% for post in posts %}
+{% extends 'base.html' %} {% block content %} {% if posts %} {% for post in posts %}
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -55,4 +55,19 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} {% else %}
+<h3>Dear {{user.username}}, start following others to get data displayed on your timeline...you could get started with the following...</h3>
+{% for profile in profiles %}
+<hr>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-3">
+        <img class="img-fluid rounded-circle" src="{{ profile.profile_pic.url}}">
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-9" style="text-align: center">
+        <h4>{{profile.username}}</h4>
+        <p>{{profile.bio|truncatechars:40}}</p>
+        <small>Member since {{profile.date_joined}}</small>
+        <a class="btn btn-outline-secondary" href="{% url 'profile' profile.user.pk %}">View profile</a>
+    </div>
+</div>
+{% endfor %} {% endif %} {% endblock %}

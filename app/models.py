@@ -12,7 +12,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=50)
     date_joined = models.DateTimeField(auto_now_add=True)
     bio = models.TextField(blank=True)
-    profile_pic = models.ImageField(null=True,blank=True,upload_to='profile/')
+    profile_pic = models.ImageField(null=True,blank=True,upload_to='profile/',default='profile.svg')
     followers = models.ManyToManyField(User,related_name='followers',blank=True)
 
     def __str__(self):
