@@ -19,6 +19,7 @@
         </div>
     </div>
 </div>
+{% if posts %}
 <h2 style="width:100%;text-align:center">Posts</h2>
 <div class="row grid" style="padding:10px;border-left:solid 0.2px black;border-right:solid 0.2px black;border-top:solid 0.2px black">
     {% for post in posts %}
@@ -29,4 +30,6 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
+<h3 style="width:100%;text-align:center">There are no posts yet.</h3>
 {% endblock %}
