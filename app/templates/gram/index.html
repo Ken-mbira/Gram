@@ -11,6 +11,22 @@
             </div>
             <div class="card-footer text-muted">
                 <small>{{post.date_added}}</small>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Comments
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <form action="#" method="post" style="padding:10px">
+                            {% csrf_token %}
+                            <div class="mb-2 mt-1">
+                                <input type="text" class="form-control" name="comment" placeholder="add comment here...">
+                            </div>
+                            <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
