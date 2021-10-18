@@ -7,7 +7,9 @@
                 <p><span class="badge"><img class="rounded-circle"  width="45px" src="{{post.user.profile.profile_pic.url}}"></span>{{post.user.profile.username}}</p>
             </div>
             <div class="card-body">
-                <img class="img-fluid" src="{{post.image_path.url}}">
+                <a href="{% url 'image' post.pk %}">
+                    <img class="img-fluid" src="{{post.image_path.url}}">
+                </a>
             </div>
             <div class="card-footer text-muted">
                 <div style="display:flex;justify-content:space-between" class="mb-2">
