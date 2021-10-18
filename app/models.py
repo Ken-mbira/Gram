@@ -83,11 +83,18 @@ class Image(models.Model):
     image_path = models.ImageField(null=True,blank=True,upload_to='posts/')
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
-    likes = models.IntegerField(null=True,blank=True,default=0)
+    likes = models.ManyToManyField(User,related_name="likers",blank=True)
     date_added = models.DateTimeField(null=True,auto_now_add=True)
 
     def __str__(self):
         return self.image_name
+
+    def like_image(self,user):
+        """This will add a user as a liker of an image
+        """
+        self.likes.add(user)
+
+
 
     def save_image(self):
         """This will add the image to the database

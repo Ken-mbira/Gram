@@ -128,3 +128,14 @@ def comment(request,pk):
     comment = Comments(user = request.user,image = post,comment = request.POST['comment'])
     comment.save()
     return HttpResponseRedirect(reverse('home'))
+
+def like(request,pk):
+    """This will handle adding a like to a post
+
+    Args:
+        request ([type]): [description]
+        pk ([type]): [description]
+    """
+    post = get_object_or_404(Image,pk=pk)
+    post.like_image(request.user)
+    return HttpResponseRedirect(reverse('home'))

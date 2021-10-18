@@ -80,7 +80,7 @@ class TestImage(TestCase):
         self.user = User.objects.create(username='mbira')
         self.user.save()
 
-        self.image = Image(user = self.user,image_path = 'blah',image_caption = 'blah',likes = 1)
+        self.image = Image(user = self.user,image_path = 'blah',image_caption = 'blah')
 
     def test_instance(self):
         """This tests whether an image instance can be created
