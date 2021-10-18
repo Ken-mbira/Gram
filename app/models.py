@@ -108,6 +108,16 @@ class Image(models.Model):
         self.image_caption = caption
         self.save()
 
+    @classmethod
+    def get_images(cls,users):
+        posts = []
+        for user in users:
+            images = Image.objects.filter(user = user)
+            for image in images:
+                posts.append(image)
+
+        return posts
+
 class Comments(models.Model):
     """This defines the characteristics of a comment
 

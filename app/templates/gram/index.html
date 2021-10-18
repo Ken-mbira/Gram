@@ -1,1 +1,3 @@
-{% extends 'base.html' %} {% block content %} {% endfor %} {% endblock %}
+{% extends 'base.html' %} {% block content %} {% for post in posts %}
+<h1>{{post.image_name}}</h1>
+{% endfor %} {% endblock %}
