@@ -12,7 +12,10 @@
             <div class="card-footer text-muted">
                 <div style="display:flex;justify-content:space-between" class="mb-2">
                     <small>{{post.date_added}}</small>
-                    <a href="{% url 'like' post.pk %}" class="btn btn-secondary btn-sm">Like</a>
+                    <div>
+                        <a href="{% url 'like' post.pk %}" class="btn btn-secondary mb-1">Like</a>
+                        <p>{{ post.get_likes_total }} likes</p>
+                    </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">

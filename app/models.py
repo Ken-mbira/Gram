@@ -94,6 +94,11 @@ class Image(models.Model):
         """
         self.likes.add(user)
 
+    def get_likes_total(self):
+        """This will return the number of likes of a particular post
+        """
+        return self.likes.count()
+
 
 
     def save_image(self):
