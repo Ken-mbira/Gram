@@ -81,7 +81,7 @@ class Image(models.Model):
         models ([type]): [description]
     """
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_path = models.ImageField('image',null=True,blank=True)
+    image_path = CloudinaryField('image',null=True,blank=True)
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
     likes = models.ManyToManyField(User,related_name="likers",blank=True)
