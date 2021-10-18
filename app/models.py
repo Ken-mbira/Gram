@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
@@ -12,7 +13,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=50)
     date_joined = models.DateTimeField(auto_now_add=True)
     bio = models.TextField(blank=True)
-    profile_pic = models.ImageField(null=True,blank=True,upload_to='profile/',default='profile.svg')
+    profile_pic = CloudinaryField('image',null=True,blank=True)
     followers = models.ManyToManyField(User,related_name='followers',blank=True)
 
     def __str__(self):
@@ -80,7 +81,7 @@ class Image(models.Model):
         models ([type]): [description]
     """
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image_path = models.ImageField(null=True,blank=True,upload_to='posts/')
+    image_path = models.ImageField('image',null=True,blank=True)
     image_name = models.CharField(max_length=50)
     image_caption = models.TextField(null=True,blank=True)
     likes = models.ManyToManyField(User,related_name="likers",blank=True)
