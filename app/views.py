@@ -69,14 +69,15 @@ def post(request,pk):
     Args:
         request ([type]): [description]
     """
+    post = Image(user = request.user)
     if request.method == 'POST':
-        form = CreatePostForm(request.POST,request.FILES)
+        form = CreatePostForm(request.POST,request.FILES,instance=post)
         if form.is_valid():
             form.save()
             messages.success(request,"Your post has been created successfully!")
         return redirect('home')
     else:
-        form = CreatePostForm(initial={'user':request.user})
+        form = CreatePostForm(instance=post)
         return render(request,'gram/add_post.html',{'form':form})
 
 def search_profile(request):
