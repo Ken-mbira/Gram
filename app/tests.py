@@ -65,7 +65,7 @@ class TestProfile(TestCase):
         profile2.save_profile()
         self.user_profile.followers.add(user2)
         following = Profile.get_following(user2)
-        self.assertTrue(following[0] == self.user_profile)
+        self.assertTrue(following[0] == self.user)
 
 
 class TestImage(TestCase):

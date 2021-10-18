@@ -16,6 +16,8 @@ def home(request):
         request ([type]): [description]
     """
     if request.user.is_authenticated:
+        profiles = Profile.get_following(request.user)
+
         return render(request,'gram/index.html')
     else:
         return redirect('login')

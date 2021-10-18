@@ -52,7 +52,12 @@ class Profile(models.Model):
             [type]: [description]
         """
         following = user.followers.all()
-        return following
+        users = []
+        for profile in following:
+            user = User.objects.get(profile = profile)
+            users.append(user)
+
+        return users
 
     @classmethod
     def search_profile(cls,search_term):
