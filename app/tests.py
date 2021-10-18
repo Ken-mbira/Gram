@@ -55,6 +55,19 @@ class TestProfile(TestCase):
 
         self.assertEqual(found_profiles[0].username,self.user_profile.username)
 
+    def test_get_following(self):
+        """This will return all the profiles that a user is following
+        """
+        self.user_profile.save_profile()
+        user2 = User.objects.create(username='ken')
+        self.user.save()
+        profile2 = Profile(user = user2,username='nikka',bio='my bio',profile_pic='image')
+        profile2.save_profile()
+        self.user_profile.followers.add(user2)
+        following = Profile.get_following(user2)
+        self.assertTrue(following[0] == self.user_profile)
+
+
 class TestImage(TestCase):
     """This will define the behaviours of the image class
 

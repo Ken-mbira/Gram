@@ -45,6 +45,16 @@ class Profile(models.Model):
         self.save()
 
     @classmethod
+    def get_following(cls,user):
+        """This will return all the users which a user is following
+
+        Returns:
+            [type]: [description]
+        """
+        following = user.followers.all()
+        return following
+
+    @classmethod
     def search_profile(cls,search_term):
         """This will return a series of profiles with a provided search term
 
